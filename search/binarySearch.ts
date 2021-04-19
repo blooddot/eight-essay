@@ -1,0 +1,46 @@
+/** 二分查找 */
+export function binarySearch(arr: number[], val: number): number {
+    if (!arr || arr.length === 0) return -1;
+
+    return search(arr, val);
+    // return recursionSearch(arr, val, 0, arr.length - 1);
+}
+
+/** 非递归 */
+function search(arr: number[], val: number): number {
+    let low = 0;
+    let high = arr.length - 1;
+    let mid: number;
+    while (low < high) {
+        mid = (low + high) >> 1;
+        if (val === arr[mid]) {
+            return mid;
+        }
+        if (val < arr[mid]) {
+            high = mid - 1;
+        }
+        if (val > arr[mid]) {
+            low = mid + 1;
+        }
+    }
+
+    return -1;
+}
+
+/** 递归 */
+function recursionSearch(arr: number[], val: number, low: number, high: number): number {
+    if (low < high) {
+        const mid = low + Math.ceil((high - low));
+        if (val === arr[mid]) {
+            return mid;
+        }
+        if (val < arr[mid]) {
+            return recursionSearch(arr, val, low, mid - 1);
+        }
+        if (val > arr[mid]) {
+            return recursionSearch(arr, val, mid + 1, high);
+        }
+    }
+
+    return -1;
+}
