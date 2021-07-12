@@ -1,4 +1,4 @@
-import { genArr } from "../core/generater";
+import { genArr } from "../core/ generator";
 import logger from "../core/logger";
 import { sequenceSearch } from "../search/sequenceSearch";
 import { performance } from 'perf_hooks';

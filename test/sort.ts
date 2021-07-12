@@ -1,5 +1,5 @@
 import { performance } from 'perf_hooks';
-import { genArr } from '../core/generater';
+import { genArr } from '../core/ generator';
 import logger from '../core/logger';
 import { bubbleSort, bubbleSort1 } from '../sort/bubbleSort';
 import { heapSort } from '../sort/heapSort';

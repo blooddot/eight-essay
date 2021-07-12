@@ -1,5 +1,5 @@
 import { consoleTreeNode } from "../core/consoler";
-import { genBinaryTree } from "../core/generater";
+import { genBinaryTree } from "../core/ generator";
 import logger from "../core/logger";
 import { TreeNode } from "../struct/tree";
 import { getNextNode } from "../temp/getNextNode";
