@@ -28,7 +28,7 @@ function search(arr: number[], val: number): number {
 
 function recursionSearch(arr: number[], val: number, low: number, high: number): number {
     if (low < high) {
-        let mid = low + Math.ceil((val - arr[low]) / (arr[high] - arr[low]) * (high - low));
+        const mid = low + Math.ceil((val - arr[low]) / (arr[high] - arr[low]) * (high - low));
         if (val === arr[mid]) {
             return mid;
         }

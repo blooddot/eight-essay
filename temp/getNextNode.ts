@@ -14,8 +14,8 @@ export function getNextNode(node: TreeNode): TreeNode {
     // 第二步
     const arr: TreeNode[] = [];
     const tree = new BinaryTree(rootNode);
-    tree.preOrder((node: TreeNode) => {
-        arr.push(node);
+    tree.preOrder((subNode: TreeNode) => {
+        arr.push(subNode);
     });
 
     // 第三步

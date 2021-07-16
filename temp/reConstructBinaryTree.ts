@@ -1,3 +1,4 @@
+import logger from "../core/logger";
 import { TreeNode } from "../struct/tree";
 
 /**
@@ -38,4 +39,4 @@ function reConstructBinaryTree(pre: number[], vin: number[]): TreeNode {
 }
 
 const result = reConstructBinaryTree([1, 2, 3, 4, 5, 6, 7], [3, 2, 4, 1, 6, 5, 7]);
-console.log(`result:`, result);
+logger.trace(`result:`, result);

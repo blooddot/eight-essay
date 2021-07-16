@@ -20,7 +20,7 @@ export function heapSort(arr: number[]): number[] {
 /** 下沉操作 */
 function downAdjust(arr: number[], parentIndex: number, len: number): void {
     // temp保存父节点的值，用于最后赋值
-    let temp = arr[parentIndex];
+    const temp = arr[parentIndex];
     let childrenIndex = parentIndex * 2 + 1;
     while (childrenIndex < len) {
         // 如果有右孩子，且右孩子大于左孩子的值，则定位到右孩子
@@ -37,7 +37,7 @@ function downAdjust(arr: number[], parentIndex: number, len: number): void {
         // 当左、右子树比父节点更大，进行交换
         arr[parentIndex] = arr[childrenIndex];
         parentIndex = childrenIndex;
-        childrenIndex = parentIndex * 2 + 1
+        childrenIndex = parentIndex * 2 + 1;
     }
     arr[parentIndex] = temp;
 }

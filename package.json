@@ -1,5 +1,5 @@
 {
-  "name": "eight_essays",
+  "name": "eight-essays",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -11,12 +11,15 @@
     "pool": "ts-node ./test/PoolMgr.test.ts"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.11",
     "@types/node": "^14.14.41",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "eslint": "^7.30.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@types/fs-extra": "^9.0.11",
     "fs-extra": "^9.1.0",
     "log4js": "^6.3.0"
   }

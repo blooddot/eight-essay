@@ -1,8 +1,8 @@
 export class TreeNode {
-    val: number;
-    left: TreeNode;
-    right: TreeNode;
-    next: TreeNode;
+    public val: number;
+    public left: TreeNode;
+    public right: TreeNode;
+    public next: TreeNode;
     public constructor(val?: number, left?: TreeNode, right?: TreeNode, next?: TreeNode) {
         this.val = (val === undefined ? 0 : val);
         this.left = (left === undefined ? null : left);
@@ -21,7 +21,7 @@ export class BinaryTree {
 
     /** 插入 */
     public insert(val: number, typeNext: typeNext = "parent"): void {
-        let node = new TreeNode(val, null, null);
+        const node = new TreeNode(val, null, null);
         if (!this.root) {
             this.root = node;
             return;

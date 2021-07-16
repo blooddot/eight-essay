@@ -1,5 +1,7 @@
 {
     "files.exclude": {
         "**/node_modules": true
-    }
+    },
+    "eslint.alwaysShowStatus": true,
+    "eslint.run": "onSave",
 }
