@@ -9,14 +9,14 @@ export default function singleton<T>() {
             // 设置constructor为protected 防止直接通过new创建实例
         }
 
-        private static m_ins: unknown = null;
+        protected static _ins: unknown = null;
 
         /** 获取单例对象 */
         public static get ins(): T {
-            if (Singleton.m_ins === null) {
-                Singleton.m_ins = new this();
+            if (Singleton._ins === null) {
+                Singleton._ins = new this();
             }
-            return Singleton.m_ins as T;
+            return Singleton._ins as T;
         }
     }
 
@@ -28,13 +28,13 @@ export default function singleton<T>() {
  * @description 可继承的范型单例基类 getInstance() 版本
  */
 export class BaseMgr {
-    private static m_instance: BaseMgr;
+    protected static _instance: BaseMgr;
 
     public static getInstance<T extends typeof BaseMgr>(this: T): InstanceType<T> {
-        if (!this.m_instance) {
-            this.m_instance = new this(true);
+        if (!this._instance) {
+            this._instance = new this(true);
         }
-        return this.m_instance as InstanceType<T>;
+        return this._instance as InstanceType<T>;
     }
 
     public constructor(flag?: boolean) {

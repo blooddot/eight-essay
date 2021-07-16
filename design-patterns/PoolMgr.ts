@@ -7,7 +7,7 @@ import singleton from './singleton';
  */
 export default class PoolMgr extends singleton<PoolMgr>() {
     /** 池子数据 */
-    private m_poolMap: Map<string, IPoolData> = new Map();
+    protected _poolMap: Map<string, IPoolData> = new Map();
 
     /**
      * 设置最大池子数量 当设置数量小于当前池子数量时，也能设置成功，后续从池子中拿出不会再回收到池子内
@@ -75,17 +75,33 @@ export default class PoolMgr extends singleton<PoolMgr>() {
         return true;
     }
 
-    private getPoolKey(className: string, keyPrefix?: string): string {
+    /**
+     * 清除指定池子
+     * @param value 目标对象 | 对象定义
+     * @param keyPrefix 可选参数 对象池key前缀，默认不传使用类名当key
+     * @returns
+     */
+    public clear<T extends IPoolObject>(value: new (...param: Array<unknown>) => T | T, keyPrefix?: string): void {
+        const poolKey = this.getPoolKey(value.name, keyPrefix);
+        const poolData = this._poolMap.get(poolKey);
+        if (!poolData) return;
+        poolData.poolObjects.length = 0;
+        this._poolMap.delete(poolKey);
+    }
+
+
+    protected getPoolKey(className: string, keyPrefix?: string): string {
         return keyPrefix ? `${keyPrefix}_${className}` : className;
     }
 
-    private getPoolData(key: string): IPoolData {
-        let poolData = this.m_poolMap.get(key);
+    protected getPoolData(poolKey: string): IPoolData {
+        let poolData = this._poolMap.get(poolKey);
         if (!poolData) {
             poolData = {
                 poolObjects: [],
                 maxPoolSize: 0
             };
+            this._poolMap.set(poolKey, poolData);
         }
 
         return poolData;
