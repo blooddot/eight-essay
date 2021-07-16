@@ -1,4 +1,4 @@
-import PoolMgr, { IPoolObject } from "../design-patterns/PoolMgr";
+import PoolMgr, { IPoolObject } from "../../src/design-patterns/PoolMgr";
 
 class Test_PoolMgr extends PoolMgr {
     public getPoolObjectSize<T extends IPoolObject>(value: new (...param: Array<unknown>) => T | T, keyPrefix?: string): number {
@@ -26,6 +26,7 @@ class Test_PoolObject implements IPoolObject {
         this.param1 = param1;
         this.paramA = paramA;
     }
+
 
     public onRelease(): void {
         this.inited = false;

@@ -4,4 +4,6 @@
     },
     "eslint.alwaysShowStatus": true,
     "eslint.run": "onSave",
+    "testFileMagic.testDirectory": "__tests__",
+    "testFileMagic.testKeyword": "spec",
 }
