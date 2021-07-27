@@ -1,14 +1,14 @@
 import { performance } from 'perf_hooks';
-import { genArr } from '../src/core/ generator';
-import logger from '../src/core/logger';
-import { bubbleSort, bubbleSort1 } from '../src/sort/bubbleSort';
-import { heapSort } from '../src/sort/heapSort';
-import { insertionSort, insertionSort1 } from '../src/sort/insertionSort';
-import { mergeSort } from '../src/sort/mergeSort';
-import { quickSort } from '../src/sort/quickSort';
-import { selectionSort } from '../src/sort/selectionSort';
+import { genArr } from '../src/utils/ generator';
+import logger from '../src/utils/logger';
+import { bubbleSort, bubbleSort1 } from '../src/algorithms/sort/bubbleSort';
+import { heapSort } from '../src/algorithms/sort/heapSort';
+import { insertionSort, insertionSort1 } from '../src/algorithms/sort/insertionSort';
+import { mergeSort } from '../src/algorithms/sort/mergeSort';
+import { quickSort } from '../src/algorithms/sort/quickSort';
+import { selectionSort } from '../src/algorithms/sort/selectionSort';
 
-function sort(arr: number[], sortFn: (arr: number[]) => number[]): void {
+function sort(arr: number[], sortFn: (_: number[]) => number[]): void {
     const len = arr.length;
     const beforeTime = performance.now();
     logger.trace(`${sortFn.name} before arr:`, arr);

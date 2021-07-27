@@ -1,4 +1,4 @@
-import { BinaryTree, TypeNext } from "../struct/tree";
+import { BinaryTree, TypeNext } from "../algorithms/struct/tree";
 
 export function genArr(len: number, randomLen?: number): number[] {
     const arr = [];

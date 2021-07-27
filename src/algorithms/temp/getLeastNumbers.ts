@@ -1,4 +1,4 @@
-import logger from "../core/logger";
+import logger from "../../utils/logger";
 
 export function GetLeastNumbers_Solution(input: number[], k: number): number[] {
     // write code here

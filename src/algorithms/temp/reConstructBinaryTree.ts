@@ -1,4 +1,4 @@
-import logger from "../core/logger";
+import logger from "../../utils/logger";
 import { TreeNode } from "../struct/tree";
 
 /**

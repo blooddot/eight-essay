@@ -1,4 +1,4 @@
-import logger from "../core/logger";
+import logger from "../../utils/logger";
 
 /** 冒泡排序 */
 export function bubbleSort(arr: number[]): number[] {

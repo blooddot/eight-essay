@@ -1,14 +1,14 @@
 import { performance } from 'perf_hooks';
-import { genArr } from "../src/core/ generator";
-import logger from "../src/core/logger";
-import { quickSelect } from "../src/select/quickSelect";
+import { genArr } from "../src/utils/ generator";
+import logger from "../src/utils/logger";
+import { quickSelect } from "../src/algorithms/select/quickSelect";
 
-function select(arr: number[], selectFn: (arr: number[], k: number) => number, k: number): void {
+function select(arr: number[], selectFn: (_: number[], __: number) => number, k: number): void {
     const beforeTime = performance.now();
     const val = selectFn(arr, k);
     const afterTime = performance.now();
     logger.trace(`${selectFn.name} cost time: ${afterTime - beforeTime}ms`);
-    logger.trace(`${selectFn.name} arr:`, arr)
+    logger.trace(`${selectFn.name} arr:`, arr);
     if (val !== null) {
         logger.info(`${selectFn.name} found k:${k} val:${val}`);
     } else {

@@ -1,8 +1,8 @@
-import { consoleTreeNode } from "../src/core/consoler";
-import { genBinaryTree } from "../src/core/ generator";
-import logger from "../src/core/logger";
-import { TreeNode } from "../src/struct/tree";
-import { getNextNode } from "../src/temp/getNextNode";
+import { consoleTreeNode } from "../src/utils/consoler";
+import { genBinaryTree } from "../src/utils/ generator";
+import logger from "../src/utils/logger";
+import { TreeNode } from "../src/algorithms/struct/tree";
+import { getNextNode } from "../src/algorithms/temp/getNextNode";
 
 const tree = genBinaryTree(10, 20);
 // tree.inOrder((node: TreeNode) => {

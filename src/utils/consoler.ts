@@ -1,4 +1,4 @@
-import { TreeNode } from "../struct/tree";
+import { TreeNode } from "../algorithms/struct/tree";
 import logger from "./logger";
 
 export function consoleTreeNode(node: TreeNode): void {
