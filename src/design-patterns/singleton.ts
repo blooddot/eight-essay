@@ -2,8 +2,8 @@
  * @author 雪糕
  * @description 可继承的范型单例基类 getter instance 版本
  */
-export default function singleton<T>() {
-    class Singleton {
+export default function Singleton<T>() {
+    class C {
         // eslint-disable-next-line no-useless-constructor
         protected constructor() {
             // 设置constructor为protected 防止直接通过new创建实例
@@ -13,14 +13,14 @@ export default function singleton<T>() {
 
         /** 获取单例对象 */
         public static get ins(): T {
-            if (Singleton._ins === null) {
-                Singleton._ins = new this();
+            if (C._ins === null) {
+                C._ins = new this();
             }
-            return Singleton._ins as T;
+            return C._ins as T;
         }
     }
 
-    return Singleton;
+    return C;
 }
 
 /**
