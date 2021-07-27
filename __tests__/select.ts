@@ -1,5 +1,5 @@
 import { performance } from 'perf_hooks';
-import { genArr } from "../src/utils/ generator";
+import { creatArray } from "../src/utils/creator";
 import logger from "../src/utils/logger";
 import { quickSelect } from "../src/algorithms/select/quickSelect";
 
@@ -18,5 +18,5 @@ function select(arr: number[], selectFn: (_: number[], __: number) => number, k:
 
 const len = 10;
 const k = 1;
-const arr = genArr(len);
+const arr = creatArray(len);
 select(arr.concat(), quickSelect, k);

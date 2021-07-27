@@ -1,5 +1,5 @@
 import { performance } from 'perf_hooks';
-import { genArr } from '../src/utils/ generator';
+import { creatArray } from '../src/utils/creator';
 import logger from '../src/utils/logger';
 import { bubbleSort, bubbleSort1 } from '../src/algorithms/sort/bubbleSort';
 import { heapSort } from '../src/algorithms/sort/heapSort';
@@ -35,5 +35,5 @@ function check(arr: number[], len: number): boolean {
     return true;
 }
 
-const arr = genArr(1000);
+const arr = creatArray(1000);
 sort(arr.concat(), heapSort);

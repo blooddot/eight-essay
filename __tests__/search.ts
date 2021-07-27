@@ -1,4 +1,4 @@
-import { genArr } from "../src/utils/ generator";
+import { creatArray } from "../src/utils/creator";
 import logger from "../src/utils/logger";
 import { sequenceSearch } from "../src/algorithms/search/sequenceSearch";
 import { performance } from 'perf_hooks';
@@ -25,5 +25,5 @@ function search(arr: number[], searchFn: (_: number[], __: number) => number, va
 
 const len = 100;
 const val = Math.floor(Math.random() * len);
-const arr = genArr(len);
+const arr = creatArray(len);
 search(arr.concat(), insertionSearch, val, true);

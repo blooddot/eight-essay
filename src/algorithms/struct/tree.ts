@@ -20,7 +20,7 @@ export class BinaryTree {
     }
 
     /** 插入 */
-    public insert(val: number, typeNext: TypeNext = "parent"): void {
+    public insert(val: number, typeNext: tNext = "parent"): void {
         const node = new TreeNode(val, null, null);
         if (!this.root) {
             this.root = node;
@@ -85,4 +85,4 @@ export class BinaryTree {
     }
 }
 
-export type TypeNext = "left" | "right" | "parent";
+export type tNext = "left" | "right" | "parent";

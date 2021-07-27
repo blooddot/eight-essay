@@ -1,6 +1,11 @@
 import { TreeNode } from "../algorithms/struct/tree";
 import logger from "./logger";
 
+/**
+ * @author 雪糕
+ * @description 打印指定数据结构
+ */
+
 export function consoleTreeNode(node: TreeNode): void {
     if (!node) return;
 
