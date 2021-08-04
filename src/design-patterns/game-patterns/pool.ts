@@ -1,13 +1,13 @@
-import Singleton from './singleton';
+import singleton from '../creational-patterns/singleton';
 
 /**
  * @author 雪糕
  * @description 对象池管理类
- * acquire和release方法名来源 - 安卓对象池源码 https://android.googlesource.com/platform/frameworks/support/+/1fcce44/v4/java/android/support/v4/util/Pools.java
+ * @see acquire和release方法名来源 https://android.googlesource.com/platform/frameworks/support/+/1fcce44/v4/java/android/support/v4/util/Pools.java
  */
-export default class PoolMgr extends Singleton<PoolMgr>() {
+export default class PoolMgr extends singleton<PoolMgr>() {
     /** 池子数据 */
-    protected _poolMap: Map<string, IPoolData> = new Map();
+    protected m_poolMap: Map<string, IPoolData> = new Map();
 
     /**
      * 设置最大池子数量 当设置数量小于当前池子数量时，也能设置成功，后续从池子中拿出不会再回收到池子内
@@ -15,8 +15,8 @@ export default class PoolMgr extends Singleton<PoolMgr>() {
      * @param C 对象定义
      * @param keyPrefix 可选参数 对象池key前缀，默认不传使用类名当key
      */
-    public setMaxPoolSize<T extends IPoolObject>(maxPoolSize: number, C: new (...param: Array<unknown>) => T, keyPrefix?: string): void {
-        const poolKey = this.getPoolKey(C.name, keyPrefix);
+    public setMaxPoolSize<T extends IPoolObject>(maxPoolSize: number, C: IPoolObjectConstructor<T>, keyPrefix?: string): void {
+        const poolKey = this.getPoolKey(C, keyPrefix);
         const poolData = this.getPoolData(poolKey);
 
         poolData.maxPoolSize = maxPoolSize;
@@ -29,13 +29,13 @@ export default class PoolMgr extends Singleton<PoolMgr>() {
      * @param params 取出时传入的动态参数
      * @returns 创建好的实例
      */
-    public acquire<T extends IPoolObject>(C: new (...param: Array<unknown>) => T, keyPrefix?: string, ...params: Array<unknown>): T {
+    public acquire<T extends IPoolObject>(C: IPoolObjectConstructor<T>, keyPrefix?: string, ...params: Array<unknown>): T {
         if (!C) return null;
 
-        const poolKey = this.getPoolKey(C.name, keyPrefix);
+        const poolKey = this.getPoolKey(C, keyPrefix);
         const poolData = this.getPoolData(poolKey);
 
-        let obj: T = null;
+        let obj: T;
         if (poolData?.poolObjects?.length > 0) {
             obj = poolData.poolObjects.pop() as T;
         } else {
@@ -57,7 +57,7 @@ export default class PoolMgr extends Singleton<PoolMgr>() {
     public release<T extends IPoolObject>(obj: T, ...params: Array<unknown>): boolean {
         if (!obj) return false;
 
-        const { poolObjects, maxPoolSize } = this.getAddPoolData(obj.poolKey);
+        const { poolObjects, maxPoolSize: maxSize } = this.getAddPoolData(obj.poolKey);
 
         // 为了性能 只找上一个和本个 一般都是连续推入多次
         if (poolObjects.length > 0 && obj === poolObjects[poolObjects.length - 1]) {
@@ -67,7 +67,7 @@ export default class PoolMgr extends Singleton<PoolMgr>() {
         obj.onRelease(...params);
 
         // 当前池子数量大于等于最大数量时，不回收
-        if (maxPoolSize !== 0 && poolObjects.length >= maxPoolSize) {
+        if (maxSize !== 0 && poolObjects.length >= maxSize) {
             return false;
         }
 
@@ -80,14 +80,20 @@ export default class PoolMgr extends Singleton<PoolMgr>() {
      * @param poolKey 池子key
      */
     public clear(poolKey: string): void {
-        const poolData = this._poolMap.get(poolKey);
+        const poolData = this.m_poolMap.get(poolKey);
         if (!poolData) return;
         poolData.poolObjects.length = 0;
-        this._poolMap.delete(poolKey);
+        this.m_poolMap.delete(poolKey);
     }
 
-
-    protected getPoolKey(className: string, keyPrefix?: string): string {
+    /**
+     * 通过类型获取池子key
+     * @param C 对象定义
+     * @param keyPrefix 可选参数 对象池key前缀，默认不传使用类名当key
+     * @returns 返回拼接后的池子key
+     */
+    protected getPoolKey<T extends IPoolObject>(C: IPoolObjectConstructor<T>, keyPrefix?: string): string {
+        const className: string = C.className;
         return keyPrefix ? `${keyPrefix}_${className}` : className;
     }
 
@@ -97,7 +103,7 @@ export default class PoolMgr extends Singleton<PoolMgr>() {
      * @returns 池子数据
      */
     protected getPoolData(poolKey: string): IPoolData {
-        return this._poolMap.get(poolKey);
+        return this.m_poolMap.get(poolKey);
     }
 
     /**
@@ -112,7 +118,7 @@ export default class PoolMgr extends Singleton<PoolMgr>() {
                 poolObjects: [],
                 maxPoolSize: 0
             };
-            this._poolMap.set(poolKey, poolData);
+            this.m_poolMap.set(poolKey, poolData);
         }
 
         return poolData;
@@ -124,6 +130,7 @@ interface IPoolData {
     maxPoolSize: number; // 池子最大数量，0代表无限制
 }
 
+/** 对象池实例结构 */
 export interface IPoolObject {
     /** 对应的池子key */
     poolKey: string;
@@ -131,4 +138,11 @@ export interface IPoolObject {
     onAcquire(...params: Array<unknown>): void;
     /** 当释放回到对象池时，回收的方法 */
     onRelease(...params: Array<unknown>): void;
+}
+
+/** 对象池实例结构 构造接口 */
+export interface IPoolObjectConstructor<T extends IPoolObject> {
+    new(): T;
+    /** 类名 */
+    readonly className: string;
 }

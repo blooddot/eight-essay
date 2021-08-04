@@ -2,7 +2,7 @@
  * @author 雪糕
  * @description 可继承的范型单例基类 getter instance 版本
  */
-export default function Singleton<T>() {
+export default function singleton<T>() {
     class C {
         // eslint-disable-next-line no-useless-constructor
         protected constructor() {
@@ -27,10 +27,10 @@ export default function Singleton<T>() {
  * @author 雪糕
  * @description 可继承的范型单例基类 getInstance() 版本
  */
-export class BaseMgr {
-    protected static _instance: BaseMgr;
+export class Singleton {
+    protected static _instance: Singleton;
 
-    public static getInstance<T extends typeof BaseMgr>(this: T): InstanceType<T> {
+    public static getInstance<T extends typeof Singleton>(this: T): InstanceType<T> {
         if (!this._instance) {
             this._instance = new this(true);
         }

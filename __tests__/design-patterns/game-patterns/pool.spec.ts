@@ -1,9 +1,9 @@
-import PoolMgr, { IPoolObject } from "../../src/design-patterns/PoolMgr";
+import PoolMgr, { IPoolObject, IPoolObjectConstructor } from "../../../src/design-patterns/game-patterns/pool";
 
 class Test_PoolMgr extends PoolMgr {
-    public getPoolObjectSize<T extends IPoolObject>(value: new (...param: Array<unknown>) => T | T, keyPrefix?: string): number {
-        const poolKey = this.getPoolKey(value.name, keyPrefix);
-        const poolData = this._poolMap.get(poolKey);
+    public getPoolObjectSize<T extends IPoolObject>(C: IPoolObjectConstructor<T>, keyPrefix?: string): number {
+        const poolKey = this.getPoolKey(C, keyPrefix);
+        const poolData = this.m_poolMap.get(poolKey);
         if (!poolData) return 0;
         return poolData.poolObjects.length;
     }
@@ -17,6 +17,8 @@ class Test_PoolMgr extends PoolMgr {
 }
 
 class Test_PoolObject implements IPoolObject {
+    public static className = "Test_PoolObject";
+    public poolKey: string;
     public inited = false;
     public param1: number;
     public paramA: string;
@@ -35,7 +37,7 @@ class Test_PoolObject implements IPoolObject {
     }
 }
 
-describe('PoolMgr UNIT', () => {
+describe('pool UNIT', () => {
     let obj: Test_PoolObject;
     test('PoolMgr acquire', () => {
         obj = Test_PoolMgr.ins.acquire(Test_PoolObject, '', 1, 'a');
@@ -60,7 +62,7 @@ describe('PoolMgr UNIT', () => {
     });
 
     test('PoolMgr clear', () => {
-        Test_PoolMgr.ins.clear(Test_PoolObject);
+        Test_PoolMgr.ins.clear(Test_PoolObject.className);
         expect(Test_PoolMgr.ins.getPoolObjectSize(Test_PoolObject)).toEqual(0);
     });
 });

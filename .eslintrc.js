@@ -806,7 +806,7 @@ module.exports = {
         'no-useless-concat': 1,
 
         // 禁止无用的构造函数
-        'no-useless-constructor': 2,
+        'no-useless-constructor': 0,
 
         // 禁止无用的转义
         'no-useless-escape': 2,
