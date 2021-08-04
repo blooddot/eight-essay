@@ -1,6 +1,6 @@
 # Behavioral Patterns 行为型模式
 
-## Command Pattern 命令模式
+## [Command Pattern 命令模式](command.ts)
 
 ## State Pattern 状态模式
 
