@@ -1,4 +1,4 @@
-# 设计模式
+# Design Patterns 设计模式
 
 ## [Behavioral Patterns 行为型模式](behavioral-patterns/README.md)
 

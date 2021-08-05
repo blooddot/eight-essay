@@ -16,4 +16,4 @@
 
 ## Dirty Flag Pattern 脏标记模式
 
-## [Object Pool Pattern 对象池模式](PoolMgr.ts)
+## [Object Pool Pattern 对象池模式](pool.ts)
