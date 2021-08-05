@@ -449,7 +449,7 @@ module.exports = {
         'no-dupe-keys': 2,
 
         // 类方法禁止重名
-        'no-dupe-class-members': 2,
+        'no-dupe-class-members': 0,
 
         // 禁止 switch 中出现相同的 case
         'no-duplicate-case': 2,
@@ -1033,6 +1033,6 @@ module.exports = {
         "require-atomic-updates": 2,
 
         //强制每个文件中包含的的类的最大数量
-        "max-classes-per-file": ["error", 3]
+        // "max-classes-per-file": ["error", 5]
     }
 };
