@@ -3,7 +3,7 @@ import PoolMgr, { IPoolObject, IPoolObjectConstructor } from "../../../src/desig
 class Test_PoolMgr extends PoolMgr {
     public getPoolObjectSize<T extends IPoolObject>(C: IPoolObjectConstructor<T>, keyPrefix?: string): number {
         const poolKey = this.getPoolKey(C, keyPrefix);
-        const poolData = this.m_poolMap.get(poolKey);
+        const poolData = this.poolMap.get(poolKey);
         if (!poolData) return 0;
         return poolData.poolObjects.length;
     }

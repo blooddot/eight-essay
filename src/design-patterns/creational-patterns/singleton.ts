@@ -39,7 +39,7 @@ export class Singleton {
 
     public constructor(flag?: boolean) {
         if (!flag) {
-            throw new Error('Manager can not direct constructor, please use instance !');
+            throw new Error('Singleton can not direct constructor, please use instance!');
         }
     }
 }

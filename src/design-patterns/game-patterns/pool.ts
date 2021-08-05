@@ -7,7 +7,7 @@ import singleton from '../creational-patterns/singleton';
  */
 export default class PoolMgr extends singleton<PoolMgr>() {
     /** 池子数据 */
-    protected m_poolMap: Map<string, IPoolData> = new Map();
+    protected poolMap: Map<string, IPoolData> = new Map();
 
     /**
      * 设置最大池子数量 当设置数量小于当前池子数量时，也能设置成功，后续从池子中拿出不会再回收到池子内
@@ -80,10 +80,10 @@ export default class PoolMgr extends singleton<PoolMgr>() {
      * @param poolKey 池子key
      */
     public clear(poolKey: string): void {
-        const poolData = this.m_poolMap.get(poolKey);
+        const poolData = this.poolMap.get(poolKey);
         if (!poolData) return;
         poolData.poolObjects.length = 0;
-        this.m_poolMap.delete(poolKey);
+        this.poolMap.delete(poolKey);
     }
 
     /**
@@ -103,7 +103,7 @@ export default class PoolMgr extends singleton<PoolMgr>() {
      * @returns 池子数据
      */
     protected getPoolData(poolKey: string): IPoolData {
-        return this.m_poolMap.get(poolKey);
+        return this.poolMap.get(poolKey);
     }
 
     /**
@@ -118,7 +118,7 @@ export default class PoolMgr extends singleton<PoolMgr>() {
                 poolObjects: [],
                 maxPoolSize: 0
             };
-            this.m_poolMap.set(poolKey, poolData);
+            this.poolMap.set(poolKey, poolData);
         }
 
         return poolData;
