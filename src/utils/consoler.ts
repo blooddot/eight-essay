@@ -1,4 +1,4 @@
-import { TreeNode } from "../algorithms/struct/tree";
+import { TreeNode } from "@/algorithms/struct/tree";
 import logger from "./logger";
 
 /**

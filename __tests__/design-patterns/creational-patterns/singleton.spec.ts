@@ -1,4 +1,4 @@
-import singleton, { Singleton } from "../../../src/design-patterns/creational-patterns/singleton";
+import singleton, { Singleton } from "@/design-patterns/creational-patterns/singleton";
 
 class Test_SingletonFn extends singleton<Test_SingletonFn>() { }
 

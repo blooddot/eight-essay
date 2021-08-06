@@ -1,12 +1,12 @@
 import { performance } from 'perf_hooks';
-import { creatArray } from '../src/utils/creator';
-import logger from '../src/utils/logger';
-import { bubbleSort, bubbleSort1 } from '../src/algorithms/sort/bubbleSort';
-import { heapSort } from '../src/algorithms/sort/heapSort';
-import { insertionSort, insertionSort1 } from '../src/algorithms/sort/insertionSort';
-import { mergeSort } from '../src/algorithms/sort/mergeSort';
-import { quickSort } from '../src/algorithms/sort/quickSort';
-import { selectionSort } from '../src/algorithms/sort/selectionSort';
+import { creatArray } from '@/utils/creator';
+import logger from '@/utils/logger';
+import { bubbleSort, bubbleSort1 } from '@/algorithms/sort/bubbleSort';
+import { heapSort } from '@/algorithms/sort/heapSort';
+import { insertionSort, insertionSort1 } from '@/algorithms/sort/insertionSort';
+import { mergeSort } from '@/algorithms/sort/mergeSort';
+import { quickSort } from '@/algorithms/sort/quickSort';
+import { selectionSort } from '@/algorithms/sort/selectionSort';
 
 function sort(arr: number[], sortFn: (_: number[]) => number[]): void {
     const len = arr.length;

@@ -1,5 +1,5 @@
-import { Command, ComplexCommand, Invoker, MultipleCommand, Receiver } from "../../../src/design-patterns/behavioral-patterns/command";
-import singleton from "../../../src/design-patterns/creational-patterns/singleton";
+import { Command, ComplexCommand, Invoker, MultipleCommand, Receiver } from "@/design-patterns/behavioral-patterns/command";
+import singleton from "@/design-patterns/creational-patterns/singleton";
 
 /** 计算器数据 */
 class CalculateModel extends singleton<CalculateModel>() {

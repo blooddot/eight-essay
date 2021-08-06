@@ -1,4 +1,4 @@
-import singleton from '../creational-patterns/singleton';
+import singleton from "../creational-patterns/singleton";
 
 /**
  * @author 雪糕

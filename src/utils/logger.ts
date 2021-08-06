@@ -1,6 +1,6 @@
 import { configure, getLogger } from 'log4js';
 import * as fse from "fs-extra";
-import { Logger } from '../typings/logger';
+import { Logger } from '@/typings/logger';
 
 const path = `${process.cwd()}/essays.log`;
 if (fse.existsSync(path)) {

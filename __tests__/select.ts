@@ -1,7 +1,7 @@
 import { performance } from 'perf_hooks';
-import { creatArray } from "../src/utils/creator";
-import logger from "../src/utils/logger";
-import { quickSelect } from "../src/algorithms/select/quickSelect";
+import { creatArray } from "@/utils/creator";
+import logger from "@/utils/logger";
+import { quickSelect } from "@/algorithms/select/quickSelect";
 
 function select(arr: number[], selectFn: (_: number[], __: number) => number, k: number): void {
     const beforeTime = performance.now();

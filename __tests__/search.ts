@@ -1,10 +1,10 @@
-import { creatArray } from "../src/utils/creator";
-import logger from "../src/utils/logger";
-import { sequenceSearch } from "../src/algorithms/search/sequenceSearch";
+import { creatArray } from "@/utils/creator";
+import logger from "@/utils/logger";
+import { sequenceSearch } from "@/algorithms/search/sequenceSearch";
 import { performance } from 'perf_hooks';
-import { quickSort } from "../src/algorithms/sort/quickSort";
-import { binarySearch } from "../src/algorithms/search/binarySearch";
-import { insertionSearch } from "../src/algorithms/search/insertionSearch";
+import { quickSort } from "@/algorithms/sort/quickSort";
+import { binarySearch } from "@/algorithms/search/binarySearch";
+import { insertionSearch } from "@/algorithms/search/insertionSearch";
 
 function search(arr: number[], searchFn: (_: number[], __: number) => number, val: number, sort?: boolean): void {
     if (sort) {
