@@ -1,5 +1,7 @@
 # The developer eight-part essay
 
+This respository is deprecated. Please visit https://github.com/The-Four-Kings/eight-part-essay.
+
 技术开发八股文
 
 ## [Data Structure and Algorithm 数据结构和算法](src/algorithms/README.md)
